@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load bootstrap_tags %}
+{% block content %}
+
+
+    <h1 class="text-center">Please log in</h1>
+    <section class="inner-content-article">
+        <div class="row">
+            <div class="col-10 offset-1  col-md-8 offset-md-2 form-position">
+                <p class="text-center"><strong>If you don't have an account yet, you can <a href="{% url 'registration' %}">register here</a></strong>.</p>
+                <form method="POST" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    {{ login_form }} <!--| as_bootstrap-->
+                    <p><a href="">Forgot your password?</a></p>       
+                    <button type="submit" class="btn btn-info">Login</button>
+                </form>
+            </div>    
+        </div>
+    </section>
+
+
+
+{% endblock %}

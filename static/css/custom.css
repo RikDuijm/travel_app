@@ -1,0 +1,204 @@
+/* ------------------------------------------------------------------------------------------- Body - Layout */
+body {
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    background-color: #FFFFFF;
+    color: #2a3105;
+    margin: 20px 20px 10px 10px;
+}
+
+/* Without this, bootstrap causes a horizontal scrollbar */
+.container-fluid {
+    width: 100%;
+    padding-right: 10px;
+    padding-left: 10px;
+}
+
+.hoofdbeeld-links {
+    position: relative;
+    width: 100%;
+}
+
+.hoofdbeeld-rechts {
+    position: relative;
+    width: 100%;
+}
+
+/* ------------------------------------------------------------------------------------------- Body -  User Experience / Colour Scheme  */
+h1 {
+    color: #00887A;
+}
+
+a {
+    color: #8092f7;
+    cursor: pointer;
+}
+
+a:hover {
+    color: #8FC1E3;
+}
+
+.scroll-to, .choose {
+    cursor: pointer;
+}
+
+.scroll-to:hover {
+    color: #8FC1E3;
+}
+
+h2 {
+    color: #8092f7;
+    margin-top: 1rem;
+    margin-bottom: 0;
+    background-color: #ebe9e5;
+    padding: 5px;
+}
+
+h3 {
+    font-size: 1.5rem;
+    display: inline;
+    color: #8FC1E3;
+}
+
+h4 {
+    color: #8092f7;
+    cursor: pointer;
+    font-size: 3vw;
+    text-align: center;
+}
+
+h4:hover {
+    color: #8FC1E3;
+}
+
+@media (min-width: 992px) {
+    h4 {
+        font-size: 2vw;
+    }
+}
+
+@media (min-width: 1200px) {
+    h4 {
+        font-size: 1.5vw;
+    }
+}
+
+button {
+    color: #00887A;
+    font-weight: 600;
+    font-size: 0.86rem;
+    background-color: #D3E3F7;
+    border: none;
+    border-radius: 8px;
+}
+
+button:hover {
+    color: #8092f7;
+}
+
+.reset {
+    margin-right: 10px;
+}
+
+.addLine {
+    float: right;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.removeLine {
+    margin-top: 10px;
+    float: right;
+}
+
+/*------------------------------------------------------------------------------------------- Map*/
+.categories {
+    background-color: aliceblue;
+}
+
+/*Keeps map in place on devices < 768px */
+@media (min-width: 360px) {
+    .big-map {
+        flex-basis: auto;
+    }
+}
+
+.choose-image {
+    display: block;
+    margin: 10px auto 5px auto;
+}
+
+.chosen-image {
+    display: inline;
+    vertical-align: text-bottom;
+    margin-right: 10px;
+}
+
+.chosen-header {
+    display: inline;
+    color: #00887A;
+    font-size: 1.25rem;
+    font-weight: 500;
+}
+
+img {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#lima-map, #puno-map, #arequipa-map, #cusco-map {
+    width: 325px;
+    height: 650px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+ul {
+    font-weight: 700;
+}
+
+li {
+    color: #8092f7;
+}
+
+/* ------------------------------------------------------------------------------------------- Display of Text */
+
+#lima-intro, #arequipa-intro, #cusco-intro, #puno-intro,
+.lima-attracties, .lima-hotels, .lima-restaurants, .lima-info,
+.puno-attracties, .puno-hotels, .puno-restaurants, .puno-info,
+.arequipa-attracties, .arequipa-hotels, .arequipa-restaurants, .arequipa-info,
+.cusco-attracties, .cusco-hotels, .cusco-restaurants, .cusco-info,
+.markers-text {
+    display: none;
+}
+
+/* -------------------------------------------------------------------------------------------  Footer */
+
+.footer-header {
+    text-align: center;
+    color: #8092f7;
+    font-size: 25px;
+    font-weight: 500;
+}
+
+.footer-text {
+    text-align: center;
+}
+
+.footer-text i {
+    font-size: 30px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.footer-text i:hover {
+    color: #8FC1E3;
+    transition: 0.5s ease-in-out;
+}
+
+.footer-credits {
+    font-size: 10px;
+    font-weight: 300;
+}
