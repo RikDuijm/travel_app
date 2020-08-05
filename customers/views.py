@@ -1,7 +1,7 @@
 from django.http import HttpResponse
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import auth, messages
-from django.contrib.auth import login, authenticate
+from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_text
@@ -11,6 +11,7 @@ from .tokens import account_activation_token
 from django.core.mail import EmailMessage
 from django.db.models import Q  # for searches on several fields of model
 from django.contrib.auth.models import User
+from .models import Customer
 from django.contrib import messages
 from .forms import UserLoginForm, UserRegistrationForm, CustomerForm
 from django.views.decorators.csrf import ensure_csrf_cookie
@@ -31,7 +32,56 @@ from django.views.decorators.csrf import ensure_csrf_cookie
 def index(request):
     """Return a login page"""
     if request.user.is_authenticated:
-        return render(request, 'touroperator.html', {})
+        # user is indentified by his email
+        # user = User.objects.get(email=request.user.email)
+
+        profile = get_object_or_404(Customer, user=request.user)
+
+        if request.user == 'Peter':
+            print('Peter')
+            template = 'touroperator.html'
+            context = {
+                'profile': profile,
+            }
+        else:
+            template = 'traveler.html'
+            context = {
+                'profile': profile,
+            }
+
+        return render(request, template, context)
+
+    else:
+        print('login')
+        login_form = UserLoginForm()
+        template = 'login.html'
+        context = {'login_form': login_form}
+        
+        # if request.method == "POST":
+        
+        # # if request method is equal to POST then create an instance
+        # # of the user login form, so a new login form will be created
+        # # with the data posted from the form on the UI check if data is valid.
+        #     if login_form.is_valid():
+        #         # this will authenticate the user, whether or not this user has
+        #         # provided the username and password
+        #         user = auth.authenticate(username=request.POST['username'],
+        #                                 password=request.POST['password'])
+        #         if user:
+        #             # Then the authenticate function will return a user object.
+        #             # If there's a user,  we'll log him in.
+        #             auth.login(user=user, request=request)
+        #             return render(request, 'touroperator.html', {})
+        #         else:
+        #             login_form.add_error(None,
+        #                                 "Your username or password is incorrect.")
+        #     else:
+        #         login_form = UserLoginForm()
+
+    return render(request, template, context)
+
+
+def login(request):
     if request.method == "POST":
         login_form = UserLoginForm(request.POST)
         # if request method is equal to POST then create an instance
@@ -55,7 +105,7 @@ def index(request):
     return render(request, 'login.html', {'login_form': login_form})
 
 
-@login_required 
+@login_required
 def touroperator(request):
     """Return a login page"""
     return render(request, 'touroperator.html', {})
