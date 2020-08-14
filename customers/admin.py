@@ -1,5 +1,16 @@
 from django.contrib import admin
-from .models import Customer
+from .models import Touroperator, Customer
 
-# Register your models here.
+
+class CustomerInline(admin.TabularInline):
+    model = Customer
+
+
+class TouroperatorAdmin(admin.ModelAdmin):
+    inlines = [
+        CustomerInline,
+    ]
+
+
 admin.site.register(Customer)
+admin.site.register(Touroperator, TouroperatorAdmin)

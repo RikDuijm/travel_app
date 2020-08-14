@@ -46,7 +46,6 @@ class UserRegistrationForm(UserCreationForm):
 class CustomerForm(forms.ModelForm):
     class Meta:
         model = Customer
-        fields = ['first_name', 'last_name', 'repeat_email', 'gender', 'age',
+        fields = ['touroperator', 'first_name', 'last_name', 'repeat_email', 'age',
+                  'number_of_persons', 'destinations'
                   ]
-
-

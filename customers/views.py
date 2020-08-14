@@ -16,93 +16,39 @@ from django.contrib import messages
 from .forms import UserLoginForm, UserRegistrationForm, CustomerForm
 from django.views.decorators.csrf import ensure_csrf_cookie
 
-# Create your views here.
-
-
-# def index(request):
-#     """ Display the customer's page"""
-
-#     template = 'login.html'
-#     context = {}
-
-#     return render(request, template, context)
-
 
 @ensure_csrf_cookie
 def index(request):
     """Return a login page"""
     if request.user.is_authenticated:
         # user is indentified by his email
-        # user = User.objects.get(email=request.user.email)
-
-        profile = get_object_or_404(Customer, user=request.user)
-
-        if request.user == 'Peter':
-            print('Peter')
-            template = 'touroperator.html'
-            context = {
-                'profile': profile,
-            }
+        if request.user.username == 'Naturandes':
+            return redirect(reverse('touroperator'))
         else:
-            template = 'traveler.html'
-            context = {
-                'profile': profile,
-            }
-
-        return render(request, template, context)
+            return redirect(reverse('traveler'))
 
     else:
-        print('login')
-        login_form = UserLoginForm()
-        template = 'login.html'
-        context = {'login_form': login_form}
-        
-        # if request.method == "POST":
-        
-        # # if request method is equal to POST then create an instance
-        # # of the user login form, so a new login form will be created
-        # # with the data posted from the form on the UI check if data is valid.
-        #     if login_form.is_valid():
-        #         # this will authenticate the user, whether or not this user has
-        #         # provided the username and password
-        #         user = auth.authenticate(username=request.POST['username'],
-        #                                 password=request.POST['password'])
-        #         if user:
-        #             # Then the authenticate function will return a user object.
-        #             # If there's a user,  we'll log him in.
-        #             auth.login(user=user, request=request)
-        #             return render(request, 'touroperator.html', {})
-        #         else:
-        #             login_form.add_error(None,
-        #                                 "Your username or password is incorrect.")
-        #     else:
-        #         login_form = UserLoginForm()
-
-    return render(request, template, context)
-
-
-def login(request):
-    if request.method == "POST":
-        login_form = UserLoginForm(request.POST)
-        # if request method is equal to POST then create an instance
-        # of the user login form, so a new login form will be created
-        # with the data posted from the form on the UI check if data is valid.
-        if login_form.is_valid():
-            # this will authenticate the user, whether or not this user has
-            # provided the username and password
-            user = auth.authenticate(username=request.POST['username'],
-                                     password=request.POST['password'])
-            if user:
-                # Then the authenticate function will return a user object.
-                # If there's a user,  we'll log him in.
-                auth.login(user=user, request=request)
-                return render(request, 'touroperator.html', {})
-            else:
-                login_form.add_error(None,
-                                     "Your username or password is incorrect.")
-    else:
-        login_form = UserLoginForm()
-    return render(request, 'login.html', {'login_form': login_form})
+        if request.method == "POST":
+            login_form = UserLoginForm(request.POST)
+            if login_form.is_valid():
+                # this will authenticate the user, whether or not this user has
+                # provided the username and password
+                user = auth.authenticate(username=request.POST['username'],
+                                         password=request.POST['password'])
+                if user:
+                    # Then the authenticate function will return a user object.
+                    # If there's a user,  we'll log him in.
+                    auth.login(user=user, request=request)
+                    if request.user.username == 'Naturandes':
+                        return redirect(reverse('touroperator'))
+                    else:
+                        return redirect(reverse('traveler'))
+                else:
+                    login_form.add_error(None,
+                                         "Your username or password is incorrect.")
+        else:
+            login_form = UserLoginForm()
+        return render(request, 'login.html', {'login_form': login_form})
 
 
 @login_required
@@ -111,13 +57,18 @@ def touroperator(request):
     return render(request, 'touroperator.html', {})
 
 
+@login_required
+def traveler(request):
+    """Return a login page"""
+    return render(request, 'traveler.html', {})
+
+
 @ensure_csrf_cookie
 def registration(request):
     """Render the registration page"""
-    if request.user.is_authenticated:
+    if request.user.username != 'Naturandes':
         # User is already registered, so no point to be on registration page.
         return redirect(reverse('index'))
-
     if request.method == "POST":
         # Check of the method is post. If so instantiate the registration and
         # customer forms, using the values of the request post method.
@@ -177,7 +128,7 @@ def registration(request):
         "customer_form": customer_form})
 
 
-@login_required 
+@login_required
 def logout(request):
     """Log the user out"""
     auth.logout(request)
@@ -194,9 +145,9 @@ def activate(request, uidb64, token):
     if user is not None and account_activation_token.check_token(user, token):
         user.is_active = True
         user.save()
-        login(request, user)
+        # index(request, user)
         # return redirect('home')
-        return HttpResponse('Thank you for your email confirmation. Now you can login your account.')
+        return HttpResponse("Thank you for your email confirmation. You can "
+                            + '<a href="/">now login.<a/>')
     else:
         return HttpResponse('Activation link is invalid!')
-
