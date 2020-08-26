@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    showCustomerCitys()
 /* -------------------------------------------------------------------------------------------Reset Page */
 
     $(".reset").click(function () {
@@ -161,5 +162,27 @@ $(document).ready(function () {
         $('html, body').stop().animate({scrollTop: new_position.top}, 500);
         e.preventDefault();
     });
+
+
+/* Pogingen om zichtbaarheid op traveler-pagina's te beinvloeden. Andere aanpassingen hiervoor zitten alleen in de views: def traveler en def index: {"username": username} */
+
+
+function showCustomerCitys() {
+        var str = $('#destinationsCustomer').text(); 
+        console.log(str)
+        if (str.includes('Lima')) {
+            $('#lima-nav').removeClass("hidden");
+            $('#lima-intro').removeClass("hidden");
+        } if (str.includes('Cusco')) {
+            $('#cusco-nav').removeClass("hidden");
+            $('#cusco-intro').removeClass("hidden");
+        } if (str.includes('Arequipa')) {
+            $('#arequipa-nav').removeClass("hidden");
+            $('#arequipa-intro').removeClass("hidden");
+        } if (str.includes('Puno')) {
+            $('#puno-nav').removeClass("hidden");
+            $('#puno-intro').removeClass("hidden");
+        }
+    };
 
 });

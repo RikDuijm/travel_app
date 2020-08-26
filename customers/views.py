@@ -42,7 +42,11 @@ def index(request):
                     if request.user.username == 'Naturandes':
                         return redirect(reverse('touroperator'))
                     else:
-                        return redirect(reverse('traveler'))
+                        username = User.objects.get(
+                                   username=request.user.username)
+                        return render(request,
+                                      'traveler.html', {"username": username})
+                        # return redirect(reverse('traveler'))
                 else:
                     login_form.add_error(None,
                                          "Your username or password is incorrect.")
@@ -60,7 +64,10 @@ def touroperator(request):
 @login_required
 def traveler(request):
     """Return a login page"""
-    return render(request, 'traveler.html', {})
+    username = User.objects.get(username=request.user.username)
+    return render(request,
+                  'traveler.html', {"username": username})
+    # return render(request, 'traveler.html', {})
 
 
 @ensure_csrf_cookie

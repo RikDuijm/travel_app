@@ -1,4 +1,8 @@
 /* ------------------------------------------------------------------------------------------- Body - Layout */
+.hidden {
+    display: none!important;
+} 
+
 body {
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
