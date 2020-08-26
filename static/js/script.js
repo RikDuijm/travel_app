@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    showCustomerCitys()
+    
 /* -------------------------------------------------------------------------------------------Reset Page */
 
     $(".reset").click(function () {
@@ -184,5 +184,5 @@ function showCustomerCitys() {
             $('#puno-intro').removeClass("hidden");
         }
     };
-
+showCustomerCitys()
 });

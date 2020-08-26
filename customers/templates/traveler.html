@@ -3,7 +3,7 @@
 {% block content %}
 
 <h1>Traveler.html</h1>
-<p>Welcome {{ user.username }}</p>
+<p>Welcome {{ user.username }},</p>
 <!--<button id="buttonTest">TEST</button>-->
 <p id="destinationsCustomer">Your destinations are {{ user.customer.destinations }}.</p>
 
@@ -18,18 +18,19 @@
         </article>
 
             <div class="row">
-                <div class="col-6">
-                    <h2 class="scroll-to hidden" href="#lima-intro" id="lima-nav">Lima
+                <div class="col-6 hidden" id="lima-nav">
+                    <h2 class="scroll-to " href="#lima-intro">Lima
                     <img src="/media/naturandes/lima.jpg" alt="De wijk Miraflores in Lima" class="hoofdbeeld-links"></h2>
                 </div>
-                <div class="col-6">
-                    <h2 class="scroll-to hidden" href="#arequipa-intro" id="arequipa-nav">Arequipa<img alt="Het stadsplein van Arequipa" class="hoofdbeeld-rechts" src="/media/naturandes/arequipa.jpg"></h2>
+                <div class="col-6 hidden" id="arequipa-nav">
+                    <h2 class="scroll-to" href="#arequipa-intro">Arequipa
+                    <img alt="Het stadsplein van Arequipa" class="hoofdbeeld-rechts" src="/media/naturandes/arequipa.jpg"></h2>
                 </div>
-                <div class="col-6">
-                    <h2 class="scroll-to hidden" href="#puno-intro" id="puno-nav">Puno<img alt="Het Titicacameer, Puno" class="hoofdbeeld-links" src="/media/naturandes/puno.jpg"></h2>
+                <div class="col-6 hidden" id="puno-nav">
+                    <h2 class="scroll-to" href="#puno-intro">Puno<img alt="Het Titicacameer, Puno" class="hoofdbeeld-links" src="/media/naturandes/puno.jpg"></h2>
                 </div>
-                <div class="col-6">
-                    <h2 class="scroll-to hidden" href="#cusco-intro" id="cusco-nav">Cusco<img alt="Inheemse Quechua-bevolking in Cusco" class="hoofdbeeld-rechts" src="/media/naturandes/cusco.jpg"></h2>
+                <div class="col-6 hidden" id="cusco-nav">
+                    <h2 class="scroll-to" href="#cusco-intro">Cusco<img alt="Inheemse Quechua-bevolking in Cusco" class="hoofdbeeld-rechts" src="/media/naturandes/cusco.jpg"></h2>
                 </div>
             </div>
 
