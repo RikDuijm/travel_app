@@ -174,7 +174,7 @@ li {
 .puno-attracties, .puno-hotels, .puno-restaurants, .puno-info,
 .arequipa-attracties, .arequipa-hotels, .arequipa-restaurants, .arequipa-info,
 .cusco-attracties, .cusco-hotels, .cusco-restaurants, .cusco-info,
-.markers-text {
+.markers-text, .hideLocation {
     display: none;
 }
 

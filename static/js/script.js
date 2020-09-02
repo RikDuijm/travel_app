@@ -1,4 +1,6 @@
 $(document).ready(function () {
+
+    showCustomerCitys();
     
 /* -------------------------------------------------------------------------------------------Reset Page */
 
@@ -12,6 +14,17 @@ $(document).ready(function () {
         document.body.scrollTop = 0; // For Safari
         document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera */
     });
+
+    $(".whereAmI").click(function (){
+        $(".hideLocation").show();
+        $(".whereAmI").hide();
+    });
+
+    $(".hideLocation").click(function (){
+        $(".whereAmI").show();
+        $(".hideLocation").hide();
+    });
+
 /* -------------------------------------------------------------------------------------------Navigate Lima */
 
     $("#lima-nav").click(function () {
@@ -171,18 +184,17 @@ function showCustomerCitys() {
         var str = $('#destinationsCustomer').text(); 
         console.log(str)
         if (str.includes('Lima')) {
-            $('#lima-nav').removeClass("hidden");
+            $('#lima-div').removeClass("hidden");
             $('#lima-intro').removeClass("hidden");
         } if (str.includes('Cusco')) {
-            $('#cusco-nav').removeClass("hidden");
+            $('#cusco-div').removeClass("hidden");
             $('#cusco-intro').removeClass("hidden");
         } if (str.includes('Arequipa')) {
-            $('#arequipa-nav').removeClass("hidden");
+            $('#arequipa-div').removeClass("hidden");
             $('#arequipa-intro').removeClass("hidden");
         } if (str.includes('Puno')) {
-            $('#puno-nav').removeClass("hidden");
+            $('#puno-div').removeClass("hidden");
             $('#puno-intro').removeClass("hidden");
         }
     };
-showCustomerCitys()
 });

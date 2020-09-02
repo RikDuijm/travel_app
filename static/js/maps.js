@@ -5,6 +5,8 @@ var markersCusco = [];
 
 var routeCusco;
 
+var watchID;
+
 function initMap(){
 
 // styling maps - generated with https://mapstyle.withgoogle.com/
@@ -374,7 +376,29 @@ function initMap(){
 //Geolocation. Because maps are centered with fixed coordinates, Geolocation doesn't bother clients who are not in the city they are looking at.
 //In that case the Geolocation Marker doesn't show on the map
     $(".whereAmI").click(function() {
-        navigator.geolocation.getCurrentPosition(success, error);
+
+        watchId =  navigator.geolocation.watchPosition(success, error);
+        // var watchId = navigator.geolocation.watchPosition(scrollMap);
+
+            var markerUserLima = new google.maps.Marker({
+            map: mapLima,
+            title: "U bevindt zich hier"
+            });
+
+            var markerUserArequipa = new google.maps.Marker({
+            map: mapArequipa,
+            title: "U bevindt zich hier"
+            });
+
+            var markerUserPuno = new google.maps.Marker({
+            map: mapPuno,
+            title: "U bevindt zich hier"
+            });
+
+            var markerUserCusco = new google.maps.Marker({
+            map: mapCusco,
+            title: "U bevindt zich hier"
+            });
 
         function success(position){
             // Getting Latitude and Longitude
@@ -382,35 +406,22 @@ function initMap(){
             var long = position.coords.longitude;
 
             var latlng = new google.maps.LatLng(lat,long);
+            
+            markerUserLima.setPosition(latlng)
+            markerUserArequipa.setPosition(latlng)
+            markerUserPuno.setPosition(latlng)
+            markerUserCusco.setPosition(latlng)
 
-            var markerUserLima = new google.maps.Marker({
-                position:latlng,
-                map: mapLima,
-                title: "U bevindt zich hier"
-            });
-
-            var markerUserPuno = new google.maps.Marker({
-                position:latlng,
-                map: mapPuno,
-                title: "U bevindt zich hier"
-            });
-
-            var markerUserArequipa = new google.maps.Marker({
-                position:latlng,
-                map: mapArequipa,
-                title: "U bevindt zich hier"
-            });
-
-            var markerUserCusco = new google.maps.Marker({
-                position:latlng,
-                map: mapCusco,
-                title: "U bevindt zich hier"
-            });
         }
         function error() {
             $('body').html('Locatie niet bepaald. U heeft geen toestemming gegeven of uw browser ondersteunt dit niet. <a href="index.html">Laad de pagina opnieuw</a>.');
         }
     });
+
+    $(".hideLocation").click(function() {
+        navigator.geolocation.clearWatch(watchId);
+    });
+         
 }
 
 function clickLima(id){
